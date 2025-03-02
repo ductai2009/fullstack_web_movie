@@ -1,0 +1,329 @@
+.hidden {
+    display: none;
+}
+.logo {
+    width: 100px;
+}
+.play-button {
+    background-color: aqua;
+}
+.so-tap {
+    padding: 4px;
+    border-radius: 6px;
+    transition: scale 0.3s linear;
+    line-height: normal;
+}
+
+.so-tap:hover {
+    background-color: rgb(255 255 255 / 0.2);
+    scale: 1.05;
+}
+.tooltip {
+    /* font-size: 2rem; */
+    font-size: 2vw;
+    padding: 12px;
+    border-radius: 12px;
+}
+
+.background-hv {
+    /* background-color: #443c3c; */
+    background: linear-gradient(90deg, #443c3c 25%, #5a5050 50%, #443c3c 75%);
+    background-size: 200% 100%; /* Kích thước để tạo chuyển động */
+    animation: loadingEffect 3s infinite; /* Hiệu ứng chuyển động vô hạn */
+}
+@keyframes loadingEffect {
+    0% {
+        background-position: 200% 0; /* Bắt đầu từ bên phải */
+    }
+    100% {
+        background-position: -200% 0; /* Di chuyển sang bên trái */
+    }
+}
+.wrapper {
+    background-color: var(--background-color);
+    width: 96%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 100dvh;
+    position: relative;
+    overflow-y: hidden;
+}
+
+/* Tập Phim */
+.wrapper .wrapper__soTap {
+    /*Animation ẩn */
+    z-index: -1; /* Đưa phần tử ra sau */
+    opacity: 0; /* Làm mờ */
+    position: absolute; /* Đặt phần tử ra khỏi luồng bố cục */
+    visibility: hidden;
+    transition: opacity 1s ease, visibility 0s 0.5s;
+}
+.wrapper .wrapper__soTap.active {
+    display: flex;
+    padding: 14px 24px;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: fit-content;
+    min-height: 100vh;
+    color: var(--while);
+    background-color: aqua;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    background-color: rgba(0, 0, 0, 0.8);
+
+    /* Animation */
+    opacity: 1; /* Hiển thị rõ */
+    z-index: 2;
+    visibility: visible; /* Hiển thị */
+    transition: opacity 1s ease, visibility 0s 0s;
+}
+
+.wrapper__soTap.active .header {
+    display: flex;
+    position: sticky;
+    top: 0;
+    left: 0;
+    height: 60px;
+    /* width: 100%; */
+    z-index: 2;
+    align-items: center;
+
+    padding: 12px 12px 12px 32px;
+    gap: 10px;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+.wrapper__soTap.active .header .name {
+    /* font-size: 3rem; */
+    font-size: 2vw;
+}
+.wrapper__soTap.active .header .box-icon {
+    display: flex;
+    align-items: center;
+}
+.wrapper__soTap.active .header .icon {
+    cursor: pointer;
+}
+.wrapper__soTap.active .grid {
+    margin-top: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 34px;
+}
+
+.wrapper__soTap.active .grid .row {
+    display: flex;
+    width: 100%;
+    gap: 12px;
+}
+.wrapper__soTap.active .row .item-img {
+    width: calc(100% / 5 - 10px);
+    height: fit-content;
+    color: rgb(255 255 255 / 0.6);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: background-color 0.3s ease-in-out;
+}
+.wrapper__soTap.active .row .item-img:hover {
+    background-color: #443c3c;
+}
+.wrapper__soTap.active .desc {
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+}
+.wrapper__soTap.active .desc .name-video {
+    /* font-size: 2rem; */
+
+    font-weight: 600;
+    color: var(--while);
+}
+.wrapper__soTap.active .item-img .img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.box-gird .img-video {
+    position: relative;
+    width: 100%;
+    height: 80%;
+}
+.box-gird .img-video .bg-img {
+    position: absolute;
+    top: 0;
+    bottom: 10px;
+    right: 0;
+    left: 0;
+}
+.box-gird .img-video .box-watching {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    display: none;
+    align-items: center;
+    color: var(--while);
+    padding: 0 12px;
+    border-radius: 4px;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.6) 100%);
+    font-size: 1.1vw;
+}
+.box-gird .img-video .box-watching.active {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    display: flex;
+    align-items: center;
+    color: var(--while);
+}
+.box-gird {
+    height: calc(100vh - 100px);
+    overflow-y: auto;
+    padding-bottom: 50px;
+}
+.box-gird::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(243, 244, 250, 0.6);
+}
+
+.loadingVideo {
+    z-index: 2 !important;
+}
+
+/* END Tập Phim */
+
+.player-video {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+.player {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+.btn-control {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    flex-direction: column;
+    display: flex;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 1;
+    box-shadow: #443c3c 0px 10px 10px 10px;
+    /* background-color: transparent; */
+    padding: 0 12px;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    padding-bottom: 10px;
+    /* background-color: aqua; */
+}
+.info-video {
+    position: absolute;
+    top: 20px;
+    left: 10px;
+    right: 10px;
+    width: 100%;
+    /* flex-direction: column; */
+    display: flex;
+    background-color: antiquewhite;
+    z-index: 1;
+    background-color: transparent;
+    color: var(--while);
+    padding: 0 12px;
+    opacity: 0;
+
+    transition: opacity 0.3s ease-in-out;
+}
+.info-video .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 100%;
+    padding: 12px;
+}
+.info-video .box-name {
+    display: flex;
+    align-items: center;
+}
+.info-video .box-name .box-icon {
+    margin-right: 12px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+.hidden {
+    display: none !important;
+}
+.info-video .name {
+    /* font-size: 3rem; */
+    font-size: 2.3vw;
+
+    padding-right: 23px;
+}
+.btn-control .time-slide {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.btn-control .control-group {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.control-group .group-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.control-group .group-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.control-group .group-right .video-speed {
+    width: 100px;
+}
+.vds-player-layout {
+    display: flex;
+    z-index: 10;
+}
+
+.btn-control .vds-time-group {
+    display: flex;
+    align-items: center;
+}
+
+.btn-control .vds-time-group .vds-time {
+    color: white;
+}
+.btn-control .vds-slider-volume {
+    width: 100px;
+}
+.tippy-message {
+    z-index: 100;
+}
+.player:hover .info-video,
+.player:hover .btn-control {
+    opacity: 1;
+}
+
+@media screen and (max-width: 1024px) {
+    .wrapper__soTap.active .header .name {
+        font-size: 2vw;
+    }
+    .wrapper__soTap.active .row .item-img {
+        width: calc(100% / 3 - 10px);
+    }
+}

@@ -1,0 +1,29 @@
+.wrapper {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    justify-content: start;
+    z-index: 1;
+    background-color: var(--background-color);
+}
+.wrapper__content {
+    overflow-y: hidden;
+}
+.container {
+    display: flex;
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 72px;
+    flex-direction: column;
+    overflow-x: hidden;
+}
+.content {
+    flex: 1;
+    /* margin-left: var(--primary-width-sidebar); */
+    /* margin-left: calc(var(--primary-width-sidebar) + 24px); */
+}
+@media screen and (max-width: 1024px) {
+    .content {
+        /* margin-left: var(--primary-width-sidebar-mobile); */
+    }
+}

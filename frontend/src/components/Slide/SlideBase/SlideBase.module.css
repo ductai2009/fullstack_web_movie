@@ -1,0 +1,205 @@
+.wrapper {
+    /* height: calc(100vh - 72px);
+    width: 100vw; */
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.slide-home {
+    width: 100%;
+    height: 100%;
+}
+
+.slide-home img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.slide-home .bg {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-image: linear-gradient(to right, #000, transparent);
+    z-index: 1;
+}
+.wrapper .pagination {
+    position: absolute;
+    bottom: 10%;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+}
+.wrapper .slides {
+    position: relative;
+}
+.wrapper .content-slide {
+    position: absolute;
+    z-index: 1;
+    width: 40%;
+    height: calc(100vh - 72px);
+    top: 50%;
+    left: 25%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* background-color: aqua; */
+}
+.wrapper .btn-register {
+    background-color: var(--while);
+    font-size: 1.6vw;
+    color: aqua;
+    padding: 6px 40px;
+    font-weight: 700;
+}
+.wrapper .btn-register:hover {
+    opacity: 0.85;
+}
+
+.wrapper .btn-register .title-register {
+    color: #000;
+}
+
+.wrapper .decs {
+    font-size: 1.6vw;
+    margin-top: 12px;
+    color: var(--while);
+    font-weight: 600;
+}
+.content-1,
+.content-2,
+.content-3 {
+    opacity: 0;
+    margin-bottom: 20px;
+}
+
+.wrapper .content-slide .name {
+    font-size: 3.6vw;
+    font-weight: 600;
+    opacity: 0;
+    color: antiquewhite;
+}
+.content-slide .content-1.visible {
+    animation: fadeSlideUp 1s ease-out forwards;
+    animation-delay: 0.5s; /* Độ trễ để bắt đầu hiệu ứng */
+}
+.content-slide .content-2.visible {
+    animation: fadeSlideUp 1s ease-out forwards;
+    animation-delay: 0.6s; /* Độ trễ để bắt đầu hiệu ứng */
+}
+.content-slide .content-3.visible {
+    animation: fadeSlideUp 1s ease-out forwards;
+    animation-delay: 0.9s; /* Độ trễ để bắt đầu hiệu ứng */
+}
+/* Định nghĩa animation */
+@keyframes fadeSlideUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30px); /* Bắt đầu từ dưới */
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0); /* Hiện lên đúng vị trí */
+    }
+}
+
+/* Mỗi bullet */
+.pagination-bullet {
+    width: 8px;
+    height: 8px;
+    background-color: #ccc;
+    border-radius: 50%; /* Biến bullet thành hình tròn */
+    transition: background-color 0.3s, transform 0.3s;
+    cursor: pointer;
+}
+
+/* Bullet đang active */
+.pagination-bullet-active {
+    background-color: #fff;
+    transition: transform 0.5s ease; /* Thêm hiệu ứng mượt mà */
+    transform: scale(1.2) scaleX(1.2); /* Phóng to bullet đang active */
+    transform-origin: left;
+    margin-right: 15px;
+    width: 30px;
+    border-radius: 999px;
+}
+.pagination-bullet-active:nth-last-child(1) {
+    transform-origin: right;
+    margin-left: 15px;
+}
+
+.next {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    z-index: 1;
+    transform: translateY(-100%);
+    color: #fff;
+    font-size: 1.6vw;
+    cursor: pointer;
+}
+.prev {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    z-index: 1;
+    transform: translateY(-100%);
+    font-size: 1.6vw;
+    color: #fff;
+    cursor: pointer;
+}
+/* wareHouse  */
+.pagination.pagination-wareHouse {
+    justify-content: end;
+    align-items: end;
+    padding-right: 15%;
+}
+
+.prev.prev-wareHouse {
+    bottom: 10%;
+    top: unset;
+    right: 8%;
+    right: calc(5% + 50px);
+    left: unset;
+
+    /* background-color: aqua; */
+    transform: translateY(50%);
+}
+.next.next-wareHouse {
+    bottom: 10%;
+    top: unset;
+    right: 5%;
+    transform: translateY(50%);
+}
+
+/* END wareHouse  */
+@media screen and (max-width: 1024px) {
+    .wrapper {
+        height: 100%;
+    }
+    .slide-home {
+        height: 100%;
+    }
+    .pagination.pagination-wareHouse {
+        justify-content: center;
+        align-items: center;
+        padding-right: 0;
+        /* background-color: rosybrown; */
+    }
+
+    .prev.prev-wareHouse {
+        display: none;
+    }
+    .next.next-wareHouse {
+        display: none;
+    }
+}

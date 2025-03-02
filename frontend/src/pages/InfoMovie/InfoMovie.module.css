@@ -1,0 +1,206 @@
+.wrapper {
+    /* padding-bottom: 100px; */
+}
+.hidden {
+    display: none !important;
+}
+.see-more {
+    cursor: pointer;
+    color: bisque;
+}
+.slide-wrapper {
+    height: 80vh;
+    width: 100%;
+    position: relative;
+}
+.slide-wrapper .img-movie {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.poster-img {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+.slide-wrapper .bg {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-image: linear-gradient(to right, #000, transparent);
+    z-index: 2;
+}
+.slide-wrapper .content-info {
+    position: absolute;
+    top: 0;
+    padding: 20px 0 20px 50px;
+    bottom: 0;
+    right: 60%;
+    left: 0;
+    z-index: 3;
+    width: 50%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    color: #fff;
+    gap: 14px;
+}
+
+.slide-wrapper .content-info .name {
+    font-size: 2.3vw;
+    font-weight: bold;
+}
+.slide-wrapper .content-info .origin_name {
+    font-size: 1.3vw;
+    font-weight: bold;
+    color: sandybrown;
+}
+
+.slide-wrapper .content-info .list-episode {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    line-height: 1.2;
+}
+.bg-border {
+    color: blanchedalmond;
+}
+
+.content-info .list-type {
+    display: flex;
+    flex-direction: column;
+    /* padding-left: 22px; */
+    padding-top: 10px;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+.content-info .list-type .actor {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    line-height: 1;
+}
+.list-type .actor .text-actor {
+    color: rgba(255, 255, 255, 0.7);
+}
+.section {
+    padding: 12px 0;
+    background-color: var(--background-color);
+    width: 90%;
+    margin: 0 auto;
+    /* background-color: aqua; */
+}
+.section .section-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: fit-content;
+    font-size: 1.6vw;
+    font-weight: bold;
+    position: relative;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+}
+.section .section-title:hover .section-icon {
+    transform: translateX(18px);
+}
+.section .section-title .section-icon {
+    color: rgb(255, 255, 255);
+    width: 12px;
+    transition: transform 0.3s ease;
+}
+.section-slide {
+    width: 100%;
+    height: 200px;
+
+    /* background-color: rosybrown; */
+}
+.watch-video {
+    background-color: #12a7ff;
+    width: fit-content;
+    border-radius: 100px;
+    padding: 6px 16px;
+    font-size: 1.6rem;
+    border: 1px solid #fff;
+    transition: 0.3s ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 500;
+    margin-top: 10px;
+}
+.watch-video:hover {
+    opacity: 0.9 !important;
+}
+
+.animation-delay-1 {
+    opacity: 0;
+    animation: fadeSlideUp 1s ease-out forwards;
+    animation-delay: 0.3s; /* Độ trễ để bắt đầu hiệu ứng */
+}
+.animation-delay-2 {
+    opacity: 0;
+    animation: fadeSlideUp 1s ease-out forwards;
+    animation-delay: 0.6s; /* Độ trễ để bắt đầu hiệu ứng */
+}
+.animation-delay-3 {
+    opacity: 0;
+    animation: fadeSlideUp 1s ease-out forwards;
+    animation-delay: 0.9s; /* Độ trễ để bắt đầu hiệu ứng */
+    animation-delay: 0.6s;
+}
+.animation-delay-4 {
+    opacity: 0;
+    animation: fadeSlideUp 1s ease-out forwards;
+    animation-delay: 1.2s; /* Độ trễ để bắt đầu hiệu ứng */
+    animation-delay: 0.9s;
+}
+
+/* Định nghĩa animation */
+@keyframes fadeSlideUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30px); /* Bắt đầu từ dưới */
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0); /* Hiện lên đúng vị trí */
+    }
+}
+@media screen and (max-width: 1024px) {
+    .section {
+        padding-bottom: 0;
+    }
+    .slide-wrapper {
+        height: unset;
+    }
+    .slide-wrapper .bg {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        background-color: transparent;
+        background-image: unset;
+        z-index: 2;
+    }
+    .section .section-title {
+        font-size: 3.6vw;
+    }
+    .slide-wrapper .content-info {
+        position: unset;
+        width: 100%;
+        padding: 20px 0 20px 10px;
+    }
+    .slide-wrapper .content-info .name {
+        font-size: 2.4vw;
+    }
+    .slide-wrapper .content-info .origin_name {
+        font-size: 1.9vw;
+        font-weight: bold;
+        color: sandybrown;
+    }
+}

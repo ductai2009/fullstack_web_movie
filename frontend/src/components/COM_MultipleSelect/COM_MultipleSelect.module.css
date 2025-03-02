@@ -1,0 +1,25 @@
+.wrapper {
+    font-size: 1rem;
+    font-weight: 500;
+    border: 2px solid var(--while) !important;
+    color: var(--while);
+    display: flex !important;
+    align-items: end;
+    background-color: rgba(0, 0, 0, 0.2);
+    width: 300px;
+    /* justify-content: space-between; */
+}
+.wrapper .label {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--while);
+}
+.MenuItem {
+    font-size: 1.6rem !important;
+    font-weight: 700;
+    color: var(--while);
+}
+.Select {
+    font-size: 2rem !important;
+    color: var(--while) !important;
+}

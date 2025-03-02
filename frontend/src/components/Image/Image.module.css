@@ -1,0 +1,14 @@
+.background-hv {
+    /* background-color: #443c3c; */
+    background: linear-gradient(90deg, #443c3c 25%, #5a5050 50%, #443c3c 75%);
+    background-size: 200% 100%; /* Kích thước để tạo chuyển động */
+    animation: loadingEffect 3s infinite; /* Hiệu ứng chuyển động vô hạn */
+}
+@keyframes loadingEffect {
+    0% {
+        background-position: 200% 0; /* Bắt đầu từ bên phải */
+    }
+    100% {
+        background-position: -200% 0; /* Di chuyển sang bên trái */
+    }
+}
