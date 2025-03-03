@@ -66,9 +66,7 @@ const UserManagement = () => {
         role: 'user',
         status: 'active',
     });
-    const onSubmit_ = (data) => {
-        console.log('onSubmit ', data);
-    };
+    const onSubmit_ = (data) => {};
     useEffect(() => {
         dispatch(getAllUserAsync());
     }, []);
@@ -99,7 +97,7 @@ const UserManagement = () => {
             const dataSubmit = { ...data, id: formData._id };
 
             const update_res = await handleUserAsync(dataSubmit, 'update');
-            console.log('formData._id: ', formData._id, dataSubmit);
+
             if (update_res.success === true) {
                 notify(update_res.message);
                 dispatch(getAllUserAsync());
@@ -145,14 +143,14 @@ const UserManagement = () => {
     };
 
     const handleDelete = async (id) => {
-        if (window.confirm('Bạn có chắc muốn xóa tài khoản này không?' + id)) {
+        if (window.confirm('Bạn có chắc muốn xóa tài khoản này không?')) {
             const del = await handleUserAsync({ id }, 'delete');
-            console.log('handleDelete del: ', del);
+
             if (del.success === true) {
                 setUsers(users.filter((user) => user._id !== id));
-                notify(del.message);
+                notify('Xóa tài khoản thành công');
             } else if (del.success === false) {
-                notify(del.message);
+                notify('LỖI: ' + del.message);
             } else {
                 notify('Có lỗi xảy ra, xin vui lòng thử lại');
             }
@@ -175,8 +173,8 @@ const UserManagement = () => {
     );
 
     return (
-        <div className="min-h-screen relative bg-gray-100 p-6">
-            <div className="max-w-[70vw] mx-auto ">
+        <div className="min-h-screen relative bg-gray-100 p-6 mt-[-72px]">
+            <div className="max-w-[70vw] mx-auto mt-[72px]">
                 <div
                     className="absolute inset-0 bg-cover bg-center"
                     style={{

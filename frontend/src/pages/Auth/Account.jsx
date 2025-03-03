@@ -55,7 +55,7 @@ const Account = () => {
         },
         mode: 'onChange',
     });
-    if (auth_store?.user?.role !== 'admin' || auth_store?.user?.isAdmin !== true) {
+    if (auth_store.isLogin === false) {
         navigate(config.routes.Home);
     }
     const [user_store, setUser_store] = useState({});
@@ -124,8 +124,8 @@ const Account = () => {
     };
 
     return (
-        <div className="min-h-screen relative bg-gray-100 p-6">
-            <div className="max-w-[70vw] mx-auto ">
+        <div className="min-h-screen relative bg-gray-100 p-6 mt-[-72px]">
+            <div className="max-w-[70vw] mx-auto mt-[72px]">
                 <div
                     className="absolute inset-0 bg-cover bg-center"
                     style={{

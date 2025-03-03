@@ -1,5 +1,4 @@
 import TypeAction from '@/redux/constantsType';
-import { apiPostService, apiGetAuth } from '@/services/service';
 
 const INITIAL_STATE_AUTH = {
     success: false,
@@ -16,26 +15,33 @@ const INITIAL_STATE_ALL_USER = {
 
 export const authReducer = (state = INITIAL_STATE_AUTH, actions) => {
     switch (actions.type) {
+        case TypeAction.RESET_STORE:
+            return { ...INITIAL_STATE_AUTH };
         case TypeAction.AUTH_CHECK:
-            if (actions.payload.user.status !== 'active') {
+            if (actions.payload?.user?.status !== 'active') {
                 state.isLogin = false;
-            } else if (actions.payload.user.status === 'active') {
+            } else if (actions.payload?.user?.status === 'active') {
                 state.isLogin = actions.payload.success;
             }
+
             return { ...state, ...actions.payload, ...actions.payload.user };
         case TypeAction.AUTH_LOGIN:
-            if (actions.payload.user.status !== 'active') {
+            if (actions.payload?.user?.status !== 'active') {
                 state.isLogin = false;
-            } else if (actions.payload.user.status === 'active') {
+            } else if (actions.payload?.user?.status === 'active') {
                 state.isLogin = actions.payload.success;
             }
             return { ...state, ...actions.payload, ...actions.payload.user };
         case TypeAction.AUTH_LOGOUT:
-            state.isLogin = !actions.payload.success;
+            state.isLogin = !actions.payload?.success;
             return { ...INITIAL_STATE_AUTH };
         case TypeAction.AUTH_REGISTER:
-            state.isLogin = actions.payload.success;
-            return { ...state, ...actions.payload.user };
+            state.isLogin = actions.payload?.success;
+
+            if (actions.payload.success === true) {
+                return { ...state, ...actions.payload.user, ...actions.payload };
+            }
+            return { ...actions.payload };
         default:
             return state;
     }

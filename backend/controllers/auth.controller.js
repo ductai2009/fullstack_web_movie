@@ -38,7 +38,7 @@ const login = async function (req, res) {
 const logout = function (req, res) {
     try {
         res.clearCookie('jwt_account');
-        return res.status(200).json({ success: true, message: 'Đăng xuat thanh cong' });
+        return res.status(200).json({ success: true, message: 'Logout successfully' });
     } catch (err) {
         return res.status(500).json({ success: false, message: 'Server error' });
     }
@@ -71,7 +71,7 @@ const register = async function (req, res) {
         const randomIndex = Math.floor(Math.random() * image_arr.length);
         const randomImage = image_arr[randomIndex];
 
-        const hashedPassword = handlePassword(password);
+        const hashedPassword = await handlePassword(password);
 
         const user = new User({
             email: email,
@@ -126,18 +126,18 @@ const changePassword = async function (req, res) {
         const user = await User.findById(id);
 
         if (!user) {
-            return res.status(404).json({ success: false, message: 'User không tồn tại' });
+            return res.status(404).json({ success: false, message: 'Không tìm thấy thông tin tài khoản.' });
         }
         const isMatch = await bcrypt.compare(password, user.password);
         if (!isMatch) {
-            return res.status(404).json({ success: false, message: 'Mật khẩu không đúng' });
+            return res.status(404).json({ success: false, message: 'Mật khẩu đăng nhập không đúng.' });
         }
         user.password = hashedPassword;
         user.save();
 
         return res
             .status(200)
-            .json({ success: true, user: { ...user._doc, password: '' }, message: 'Đổi mật khẩu thành công' });
+            .json({ success: true, user: { ...user._doc, password: '' }, message: 'Đổi mật khẩu thành công.' });
     } catch (err) {
         console.log('changePassword error: ', err);
         return res.status(500).json({ success: false, message: 'changePassword err', data: err.message });

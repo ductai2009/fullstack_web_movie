@@ -47,7 +47,6 @@ function Slide({ urlImg, dsImg, classPagination, classPrev, classNext, PropPrevI
     };
     useEffect(() => {
         setIsLogin(user_store.isLogin);
-        console.log('dsImg ', dsImg);
     }, [user_store]);
 
     return (

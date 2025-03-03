@@ -11,7 +11,6 @@ import { Button } from '@/components/ui/button';
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 
-import { store } from '@/redux/store';
 import { userLoginAsync } from '@/redux/actions';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -37,15 +36,20 @@ export default function Login() {
     }
     const onSubmit = (data) => {
         dispatch(userLoginAsync(data));
-        console.log('onSubmit ', data);
-
-        if (dataUserLogin.success === true && dataUserLogin?.isLogin === true) {
+    };
+    useEffect(() => {
+        if (dataUserLogin?.success === false && dataUserLogin?.type === 'cookie') {
+            dispatch({ type: 'RESET_STORE' });
+            return;
+        }
+        if (dataUserLogin?.success === true && dataUserLogin?.isLogin === true) {
             navigate(config.routes.Home);
         }
-        if (dataUserLogin?.success === false && dataUserLogin?.isLogin === false && dataUserLogin.message) {
-            alert(dataUserLogin?.message);
+        if ((dataUserLogin?.success === false || dataUserLogin?.isLogin === false) && dataUserLogin.message) {
+            dispatch({ type: 'RESET_STORE' });
+            alert(dataUserLogin.message);
         }
-    };
+    }, [dataUserLogin]);
 
     var classMessage = 'text-[0.9vw] ';
     return (

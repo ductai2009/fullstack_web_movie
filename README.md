@@ -1,5 +1,13 @@
 # 🎬 Dự Án Web Xem Phim Galaxy
 
+Link youtube Demo: https://youtu.be/_DG37s3uKFw
+
+🖼️ Giao diện  
+Dưới đây là một số hình ảnh giao diện của ứng dụng:  
+![Giao diện Galaxy-movie](frontend/public/Capture1.png)
+![Giao diện Galaxy-movie](frontend/public/Capture2.png)
+![Giao diện Galaxy-movie](frontend/public/Capture3.png)
+
 ## 🚀 Giới Thiệu
 
 Dự án web xem phim trực tuyến cho phép người dùng tìm kiếm, xem trailer, đánh giá và bình luận về các bộ phim. Hệ thống hỗ trợ đăng nhập, đăng ký, và lưu trữ lịch sử tìm kiếm để mang lại trải nghiệm tốt nhất cho người dùng.
@@ -57,6 +65,10 @@ git clone https://github.com/ductai2009/fullstack_web_movie.git
 cd fullstack_web_movie
 npm install
 ```
+
+### Cấu hình MongoDB
+
+Cập nhật MONGODB_URI trong file .env để cấu hình MongoDB cho dự án
 
 ### Chạy Dự Án
 

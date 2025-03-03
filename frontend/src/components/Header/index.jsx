@@ -20,6 +20,7 @@ import Menu from '@/components/Popper/Menu';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { checkAuthAsync, getSearchHisAsync, userLogoutAsync } from '@/redux/actions';
+import ScrollToTopButton from '../ScrollToTopButton';
 
 function Header() {
     const cx = classNames.bind(style);
@@ -96,7 +97,7 @@ function Header() {
     const [avatar, setAvatar] = useState(authCheck?.user?.image ? authCheck?.user?.image : authCheck?.image);
 
     useEffect(() => {
-        console.log('authCheck <1>', authCheck);
+        // console.log('authCheck <1>', authCheck);
         if (authCheck.success === true && authCheck.user && authCheck.isLogin === true) {
             setIsAuth(true);
             dispatch(getSearchHisAsync(authCheck?.user?.email));
@@ -110,7 +111,7 @@ function Header() {
         } else {
             setIsAuth(false);
             dispatch(getSearchHisAsync(''));
-            console.log('Chưa đăng nhập');
+            // console.log('Chưa đăng nhập');
         }
     }, [authCheck]);
 
@@ -299,6 +300,7 @@ function Header() {
                     )}
                 </div>
             </div>
+            <ScrollToTopButton />
         </div>
     );
 }

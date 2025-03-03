@@ -22,8 +22,7 @@ export const apiPostService = async (link = '', params = {}, data = {}) => {
         return result.data;
     } catch (error) {
         console.error('Error call api apiPostService:', error.response ? error.response.data : error.message);
-        if (error.response.data) return error.response.data;
-        throw error;
+        return error.response ? error.response.data : error.message;
     }
 };
 export const apiGetAuth = async (link = '', params = {}) => {
@@ -44,7 +43,7 @@ export const apiGetAuth = async (link = '', params = {}) => {
         return result.data;
     } catch (error) {
         console.error('Error in apiGetAuth:', error.response?.data || error.message || 'Unknown error');
-        throw error;
+        return error.response?.data || error.message || 'Unknown error';
     }
 };
 

@@ -6,6 +6,7 @@ import DefaultLayout from './layouts/DefaultLayout';
 import { Fragment } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import { useSelector } from 'react-redux';
+import NotFound from '@/pages/NotFound';
 function App() {
     const notify = () => {
         toast(CustomComponent, {
@@ -23,6 +24,8 @@ function App() {
 
         return null;
     }
+    const validPaths = [...publicRoutes, ...privateRoutes].map((route) => route.path);
+
     return (
         <Router>
             <div className="App">
@@ -57,7 +60,12 @@ function App() {
                         let Layout = DefaultLayout;
                         if (!auth_store || auth_store?.isLogin === false) {
                             Page = route.componentPubic;
-                            Layout = Fragment;
+
+                            if (route.layout) {
+                                Layout = route.layout;
+                            } else if (route.layout === null) {
+                                Layout = Fragment;
+                            }
                         } else {
                             Page = route.component;
                             Layout = DefaultLayout;
@@ -80,6 +88,7 @@ function App() {
                         );
                     })}
                 </Routes>
+                <Routes>{!validPaths.includes(location.pathname) && <Route path="/*" element={<NotFound />} />}</Routes>
             </div>
         </Router>
     );

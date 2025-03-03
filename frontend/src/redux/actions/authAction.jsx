@@ -11,7 +11,7 @@ export const userLoginAsync = (data) => async (dispatch) => {
     try {
         const link_login = '/api/v1/auth/login';
         const response = await apiPostService(link_login, {}, data);
-
+        console.log('userLoginAsync', response);
         dispatch(userLogin(response));
     } catch (error) {
         console.error('userLoginAsync failed:', error);
@@ -58,22 +58,18 @@ export const userRegister = (data) => {
         payload: data,
     };
 };
-export const userRegisterAsync =
-    (data, isAdmin = false) =>
-    async (dispatch) => {
-        try {
-            const link_register = '/api/v1/auth/register';
-            const dataBody = { ...data, isCookie: isAdmin };
-            const response = await apiPostService(link_register, {}, dataBody);
+export const userRegisterAsync = (data) => async (dispatch) => {
+    try {
+        const link_register = '/api/v1/auth/register';
+        const dataBody = { ...data, isCookie: true };
+        const response = await apiPostService(link_register, {}, dataBody);
+        dispatch(userRegister(response));
+    } catch (error) {
+        console.error('userRegisterAsync failed:', error);
 
-            if (isAdmin) return;
-            dispatch(userRegister(response));
-        } catch (error) {
-            console.error('userRegisterAsync failed:', error);
-            if (isAdmin) return;
-            dispatch(userRegister({ success: false }));
-        }
-    };
+        dispatch(userRegister({ success: false }));
+    }
+};
 
 export const getAllUser = (data) => {
     return {

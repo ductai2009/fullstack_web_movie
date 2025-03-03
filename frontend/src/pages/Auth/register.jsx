@@ -11,8 +11,8 @@ import { z } from 'zod';
 import { Button } from '@/components/ui/button';
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import { store } from '@/redux/store';
-import { userRegister, userRegisterAsync } from '@/redux/actions';
+
+import { checkAuthAsync, userRegister, userRegisterAsync } from '@/redux/actions';
 import { useDispatch, useSelector } from 'react-redux';
 
 const FormSchema = z
@@ -43,13 +43,22 @@ function Register() {
     const onSubmit = async (data) => {
         dispatch(userRegisterAsync(data));
     };
+
+    useEffect(() => {
+        dispatch(checkAuthAsync());
+    }, []);
     const dataUser = useSelector((state) => state.auth);
     useEffect(() => {
+        if (dataUser?.success === false && dataUser?.type === 'cookie') {
+            dispatch({ type: 'RESET_STORE' });
+            return;
+        }
         if (dataUser.user?.success === true || dataUser?.success === true) {
             navigate(config.routes.Home);
         }
-        if (dataUser?.user?.success === false) {
-            alert(dataUser.user.message);
+        if (dataUser?.success === false && dataUser.message) {
+            dispatch({ type: 'RESET_STORE' });
+            alert(dataUser.message);
         }
     }, [dataUser]);
 

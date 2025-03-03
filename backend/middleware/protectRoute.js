@@ -7,7 +7,7 @@ const protectRoute = async (req, res, next) => {
     try {
         const token = req.cookies.jwt_account;
         if (!token) {
-            return res.status(401).json({ type: 'cookie', success: false, message: 'Vui lòng đăng nhập' });
+            return res.status(400).json({ type: 'cookie', success: false, message: 'Vui lòng đăng nhập' });
         }
         const decoded = jwt.verify(token, ENV_VARS.JWT_SECRET);
 

@@ -1,6 +1,5 @@
-// import { Button } from '@/components/ui/button';
 import Button from '@/components/Button';
-import config from '@/components/config';
+
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import {
@@ -13,16 +12,14 @@ import {
     DialogTrigger,
 } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
 import { z } from 'zod';
-import { Link, useNavigate } from 'react-router-dom';
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { useDispatch, useSelector } from 'react-redux';
-import { changePasswordUserAsync, userLoginAsync } from '@/redux/actions';
+import { changePasswordUserAsync } from '@/redux/actions';
 import images from '@/assets/image';
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
-import { use } from 'react';
+
 const FormSchema = z
     .object({
         password_old: z.string().min(6, { message: 'Mật khẩu phải ít nhất 6 kí tự.' }),
@@ -34,7 +31,6 @@ const FormSchema = z
         path: ['confirmPassword'],
     });
 function ChangePassword({ title, classTitle }) {
-    const dispatch = useDispatch();
     const notify = (message) => toast(message);
     const form = useForm({
         resolver: zodResolver(FormSchema),
@@ -56,14 +52,17 @@ function ChangePassword({ title, classTitle }) {
         const res = await changePasswordUserAsync(dataUserNew);
         console.log('onSubmit change password', data);
         console.log('onSubmit dataUserNew', dataUserNew);
+        console.log('onSubmit change password res', res);
 
         if (res.success === true && res?.message) {
             notify(res?.message);
+
             setOpen(false);
         }
         if (res?.success === false) {
             alert(res?.message);
         }
+        form.reset();
     };
     const [open, setOpen] = useState(false);
     var classMessage = 'text-[0.9vw] ';
