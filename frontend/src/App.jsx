@@ -24,7 +24,8 @@ function App() {
 
         return null;
     }
-    const validPaths = [...publicRoutes, ...privateRoutes].map((route) => route.path);
+    // const validPaths = [...publicRoutes, ...privateRoutes].map((route) => route.path);
+    const validPaths = [...publicRoutes, ...privateRoutes].some((route) => location.pathname.startsWith(route.path));
 
     return (
         <Router>
@@ -88,7 +89,7 @@ function App() {
                         );
                     })}
                 </Routes>
-                <Routes>{!validPaths.includes(location.pathname) && <Route path="/*" element={<NotFound />} />}</Routes>
+                <Routes>{!validPaths && <Route path="*" element={<NotFound />} />}</Routes>
             </div>
         </Router>
     );
